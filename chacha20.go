@@ -3,7 +3,7 @@ package crypt
 import (
 	"fmt"
 
-	"github.com/Yawning/chacha20"
+	"github.com/baishuijianjia/chacha20"
 )
 
 const (
