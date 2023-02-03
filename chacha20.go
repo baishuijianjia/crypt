@@ -42,7 +42,7 @@ func chacha20Encrypt(src, key, iv []byte) (ciphertext []byte, err error) {
 	} else {
 		ciphertext = append([]byte{}, src...)
 	}
-	if stream, err = chacha20.NewCipher(key, iv); err != nil {
+	if stream, err = chacha20.New(key, iv); err != nil {
 		return nil, err
 	}
 	stream.XORKeyStream(ciphertext[offset:], src)
@@ -61,7 +61,7 @@ func chacha20Decrypt(src, key, iv []byte) (plaintext []byte, err error) {
 
 	if !inSliceInt(len(iv), []int{8, 12, 24}) {
 		return nil, fmt.Errorf("crypt ChaCha20.Decrypt: invalid nonce size %d", len(iv))
-	} else if stream, err = chacha20.NewCipher(key, iv); err != nil {
+	} else if stream, err = chacha20.New(key, iv); err != nil {
 		return nil, err
 	}
 	plaintext = make([]byte, len(ciphertext))
